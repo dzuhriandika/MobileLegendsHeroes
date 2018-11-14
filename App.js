@@ -1,73 +1,43 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import NativeBaseAnatomy from './components/NativeBaseAnatomy';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import {createMaterialTopTabNavigator} from 'react-navigation';
 
-class index extends Component {
-  render() {
-    return(
-      <View style={styles.container}>
-        <NativeBaseAnatomy/>
-      </View>
-    )
-  }
-}
+import {Home} from './Components/Home';
+import {Heroes} from './Components/Heroes';
+import {Setting} from './Components/Setting';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+const NavBar = createMaterialTopTabNavigator(
+  {
+    Home: {screen: Home,},
+    Heroes: {screen: Heroes},
+    About: {screen: Setting}
   },
-  header: {
-    flex: 0.2,
-    backgroundColor: "green"
-  },
-  footer: {
-    flex:3,
-    backgroundColor: "red",
-    justifyContent: "center"
-  },
-  footerText: {
-    alignSelf: "center",
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 20
-  }
-});
+  {
+    tabBarPosisition: 'bottom',
+    swipeEnabled: true,
+    tabBarOption:
+    {
+      avtiveTintColor: '#f8f8f8f8',
+      activeBackgroundColor: '#586598',
+      inactiveTintColor: '#1234',
+      style: {
+        backgroundColor:'#000055',
+      },
 
-export default index;
-
-/* state = {
-    number: 0,
-    text: ""
-  }
-
-  // cara lain menulis state
-  constructor(){
-    super();
-    this.state={
-      number: 0,
-      text: ""
+      labelStyle: {
+        fontSize: 10,
+        color: 'white',
+        padding: 5,
+      }
     }
   }
+);
 
-  componentDidMount(){
-    /*setInterval(()=>{
-      this.setState({
-        number: this.state.number + 1
-      })
-    }, 1000)
-  }
 
-  handleClick(myName){
-    this.setState({
-      number: this.state.number + 1,
-      text: "Hello React Native"
-    })
+export default class App extends React.Component {
+  render() {
+    return (
+      <NavBar/>
+    );
   }
-  const myName = 'Rayhan Rafiud Darojat';
-  for <View> :
-  <Text>Please click the button bellow</Text>
-  <Text>{this.state.text}</Text>
-  <TouchableOpacity onPress={()=>this.handleClick(myName)}>
-    <Text>click</Text>
-  </TouchableOpacity>
-*/
+}
